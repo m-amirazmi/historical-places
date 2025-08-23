@@ -3,6 +3,10 @@ import { PlaceCard } from "../../components/PlaceCard";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "..";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchPlaces } from "../../redux/actions";
+import { RootState } from "../../redux/reducers";
 
 export const samplePlaces = [
   {
@@ -172,20 +176,27 @@ export const samplePlaces = [
 type Nav = NativeStackNavigationProp<RootStackParamList>;
 
 export function Home() {
+  const dispatch = useDispatch();
+  const places = useSelector((state: RootState) => state.places.list);
+  const loading = useSelector((state: RootState) => state.places.loading);
+
+  useEffect(() => {
+    dispatch(fetchPlaces());
+  }, []);
+
   const navigation = useNavigation<Nav>();
 
-  const handlePress = (place) => {
-    console.log("Place:", place.name);
-    navigation.navigate("PlaceDetail", { id: place._id });
+  const handlePress = (id: string) => {
+    navigation.navigate("PlaceDetail", { id });
   };
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={samplePlaces}
+        data={places}
         keyExtractor={(item) => item._id}
         renderItem={({ item }) => (
-          <PlaceCard place={item} onPress={() => handlePress(item)} />
+          <PlaceCard place={item} onPress={() => handlePress(item._id)} />
         )}
       />
     </View>

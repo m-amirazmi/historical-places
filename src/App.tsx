@@ -1,11 +1,13 @@
 import { Assets as NavigationAssets } from "@react-navigation/elements";
-import { DarkTheme, DefaultTheme } from "@react-navigation/native";
+import { DefaultTheme } from "@react-navigation/native";
 import { Asset } from "expo-asset";
 import { createURL } from "expo-linking";
 import * as SplashScreen from "expo-splash-screen";
 import * as React from "react";
 import { useColorScheme } from "react-native";
+import { Provider } from "react-redux";
 import { Navigation } from "./navigation";
+import { store } from "./redux/store";
 
 Asset.loadAsync([
   ...NavigationAssets,
@@ -23,15 +25,17 @@ export function App() {
   // const theme = colorScheme === "dark" ? DarkTheme : DefaultTheme;
 
   return (
-    <Navigation
-      theme={DefaultTheme}
-      linking={{
-        enabled: "auto",
-        prefixes: [prefix],
-      }}
-      onReady={() => {
-        SplashScreen.hideAsync();
-      }}
-    />
+    <Provider store={store}>
+      <Navigation
+        theme={DefaultTheme}
+        linking={{
+          enabled: "auto",
+          prefixes: [prefix],
+        }}
+        onReady={() => {
+          SplashScreen.hideAsync();
+        }}
+      />
+    </Provider>
   );
 }
