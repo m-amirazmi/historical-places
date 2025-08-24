@@ -1,7 +1,7 @@
+import { Card, Text, useTheme } from "@ui-kitten/components";
 import { LucideIcon } from "lucide-react-native";
-import { Image, StyleSheet, Text, View } from "react-native";
-import { useTheme } from "../contexts/ThemeContext";
-import { Radius, Spacing } from "../utils/theme";
+import { Image, StyleSheet, View } from "react-native";
+import { FontSize, Radius, Spacing } from "../utils/theme";
 
 type NumberCardProp = {
   icon: LucideIcon;
@@ -11,7 +11,8 @@ type NumberCardProp = {
 };
 
 export function NumberCard({ icon, iconTheme, number, text }: NumberCardProp) {
-  const { colors } = useTheme();
+  const theme = useTheme();
+
   const Icon = icon;
 
   let iconBgColor;
@@ -19,64 +20,56 @@ export function NumberCard({ icon, iconTheme, number, text }: NumberCardProp) {
 
   switch (iconTheme) {
     case "success":
-      iconBgColor = colors.success;
-      iconColor = colors.successContent;
+      iconBgColor = theme["color-success-transparent-100"];
+      iconColor = theme["color-success-700"];
       break;
     case "error":
-      iconBgColor = colors.error;
-      iconColor = colors.errorContent;
+      iconBgColor = theme["color-danger-transparent-100"];
+      iconColor = theme["color-danger-700"];
       break;
     case "info":
-      iconBgColor = colors.info;
-      iconColor = colors.infoContent;
+      iconBgColor = theme["color-info-transparent-100"];
+      iconColor = theme["color-info-700"];
       break;
     case "warning":
-      iconBgColor = colors.warning;
-      iconColor = colors.warningContent;
+      iconBgColor = theme["color-warning-transparent-100"];
+      iconColor = theme["color-warning-700"];
       break;
     default:
       break;
   }
 
   return (
-    <View
-      style={[
-        styles.container,
-        { backgroundColor: colors.base100, borderColor: colors.accentContent },
-      ]}
-    >
-      <View style={[styles.iconContainer, { backgroundColor: iconBgColor }]}>
-        <Icon color={iconColor} />
+    <Card style={styles.card}>
+      <View style={styles.container}>
+        <View style={[styles.iconContainer, { backgroundColor: iconBgColor }]}>
+          <Icon color={iconColor} />
+        </View>
+        <View>
+          <Text style={[styles.numberText]}>{number}</Text>
+          <Text category="p2">{text}</Text>
+        </View>
       </View>
-      <View>
-        <Text style={[styles.numberText, { color: colors.primaryContent }]}>
-          {number}
-        </Text>
-        <Text style={[styles.numberSubText, { color: colors.baseContent }]}>
-          {text}
-        </Text>
-      </View>
-    </View>
+    </Card>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "row",
-    gap: Spacing.sm,
-    borderRadius: Radius.lg,
-    zIndex: 10,
+  card: {
     boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
+    flex: 1,
+  },
+  container: {
+    flexDirection: "row",
+    alignItems: "center",
+    zIndex: 10,
+    gap: Spacing.md,
   },
   iconContainer: {
     padding: Spacing.sm,
-    borderRadius: Radius.lg,
+    borderRadius: Radius.sm,
   },
   numberText: {
-    fontSize: 24,
-  },
-  numberSubText: {
-    fontSize: 12,
+    fontSize: FontSize.xl,
   },
 });

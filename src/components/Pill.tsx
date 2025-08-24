@@ -1,5 +1,5 @@
-import { StyleSheet, Text, TouchableNativeFeedback, View } from "react-native";
-import { useTheme } from "../contexts/ThemeContext";
+import { Text, useTheme } from "@ui-kitten/components";
+import { StyleSheet, TouchableNativeFeedback, View } from "react-native";
 import { Radius, Spacing } from "../utils/theme";
 
 type PillProps = {
@@ -9,10 +9,14 @@ type PillProps = {
 };
 
 export function Pill({ onPress, selected, text }: PillProps) {
-  const { colors } = useTheme();
+  const theme = useTheme();
 
-  const bgColor = selected ? colors.primary : colors.base200;
-  const textColor = selected ? colors.primaryContent : colors.neutral;
+  const bgColor = selected
+    ? theme["color-primary-700"]
+    : theme["color-basic-400"];
+  const textColor = selected
+    ? theme["color-primary-100"]
+    : theme["color-basic-700"];
 
   return (
     <TouchableNativeFeedback onPress={onPress}>

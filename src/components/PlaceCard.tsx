@@ -1,5 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Place } from "../utils/types";
+import { useTheme } from "@ui-kitten/components";
 
 type PlaceCardProps = {
   place: Place;
@@ -7,8 +8,13 @@ type PlaceCardProps = {
 };
 
 export function PlaceCard({ place, onPress }: PlaceCardProps) {
+  const theme = useTheme();
+
   return (
-    <TouchableOpacity style={styles.card} onPress={onPress}>
+    <TouchableOpacity
+      style={[styles.card, { backgroundColor: theme["color-basic-200"] }]}
+      onPress={onPress}
+    >
       <View style={styles.content}>
         <Text style={styles.name}>{place.name}</Text>
         <Text style={styles.description}>{place.description}</Text>
@@ -23,7 +29,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 12,
     marginVertical: 6,
-    backgroundColor: "#fff",
     borderRadius: 8,
     elevation: 2,
     flex: 1,

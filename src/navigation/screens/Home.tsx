@@ -8,7 +8,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
-  Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
@@ -17,12 +16,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootStackParamList } from "..";
 import { PlaceCard } from "../../components/PlaceCard";
 import { TextInputField } from "../../components/TextInputField";
-import { useTheme } from "../../contexts/ThemeContext";
 import { fetchPlaces } from "../../redux/actions";
 import { RootState } from "../../redux/reducers";
 import { NumberCard } from "../../components/NumberCard";
 import { Pill } from "../../components/Pill";
+import { Layout, Text, useTheme } from "@ui-kitten/components";
 import { Spacing } from "../../utils/theme";
+import { moderateScale } from "react-native-size-matters";
 
 type Nav = NativeStackNavigationProp<RootStackParamList>;
 
@@ -38,10 +38,11 @@ const filter: FilterType[] = [
 ];
 
 export function Home() {
-  const { colors } = useTheme();
   const dispatch = useDispatch();
   const places = useSelector((state: RootState) => state.places.list);
   const loading = useSelector((state: RootState) => state.places.loading);
+
+  const theme = useTheme();
 
   const [selectedFilter, setSelectedFilter] = useState<FilterType["id"]>("all");
 
@@ -61,23 +62,20 @@ export function Home() {
       behavior={Platform.OS === "ios" ? "padding" : undefined}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <View style={{ flex: 1 }}>
-          <View style={[styles.header, { backgroundColor: colors.accent }]}>
+        <Layout style={{ flex: 1 }}>
+          <View
+            style={[
+              styles.header,
+              { backgroundColor: theme["color-primary-200"] },
+            ]}
+          >
             <View style={styles.headerTextContainer}>
-              <Text
-                style={[styles.headerTitle, { color: colors.accentContent }]}
-              >
-                Historical Places
-              </Text>
-              <Text
-                style={[styles.headerSubtitle, { color: colors.accentContent }]}
-              >
-                Discover amazing destinations
-              </Text>
+              <Text category="h1">Historical Places</Text>
+              <Text category="s1">Discover amazing destinations</Text>
             </View>
             <TextInputField
               placeholder="Search historical place..."
-              icon={<Search color={colors.base300} size={20} />}
+              icon={Search}
             />
             <View style={styles.numberCardContainer}>
               <NumberCard
@@ -123,7 +121,7 @@ export function Home() {
               )}
             />
           </View>
-        </View>
+        </Layout>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
@@ -131,9 +129,9 @@ export function Home() {
 
 const styles = StyleSheet.create({
   header: {
-    height: 240,
-    paddingTop: 72,
-    paddingInline: Spacing.lg,
+    height: moderateScale(240),
+    paddingTop: moderateScale(68),
+    paddingInline: Spacing.md,
     gap: Spacing.md,
   },
   headerTitle: {
@@ -145,23 +143,23 @@ const styles = StyleSheet.create({
   },
   headerTextContainer: {},
   numberCardContainer: {
+    marginTop: Spacing.lg,
     flexDirection: "row",
     gap: Spacing.sm,
   },
   contentContainer: {
     marginTop: Spacing.xl,
-    paddingInline: Spacing.lg,
+    paddingInline: Spacing.md,
   },
   pillContainer: {
     flexDirection: "row",
     gap: Spacing.sm,
   },
   placeTitleContainer: {
-    marginTop: Spacing.md,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: Spacing.sm,
+    marginTop: Spacing.md,
   },
   placesTitle: {
     fontSize: 20,

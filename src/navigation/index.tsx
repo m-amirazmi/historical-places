@@ -23,6 +23,7 @@ import { Map } from "./screens/Map";
 import { Visited } from "./screens/Visited";
 import { PlaceDetail } from "./screens/PlaceDetail";
 import { AddPlace } from "./screens/AddPlace";
+import { useThemeContextContext } from "../contexts/ThemeContext";
 
 const HomeTabs = createBottomTabNavigator({
   screens: {

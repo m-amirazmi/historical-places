@@ -8,8 +8,12 @@ import { useColorScheme } from "react-native";
 import { Provider } from "react-redux";
 import { Navigation } from "./navigation";
 import { store } from "./redux/store";
-import { DarkTheme, LightTheme } from "./utils/theme";
-import { ThemeProvider } from "./contexts/ThemeContext";
+import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
+import * as eva from "@eva-design/eva";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { EvaIconsPack } from "@ui-kitten/eva-icons";
+import { ThemeProvider, useThemeContextContext } from "./contexts/ThemeContext";
+import { customEvaTheme } from "./utils/theme";
 
 Asset.loadAsync([
   ...NavigationAssets,
@@ -21,25 +25,34 @@ SplashScreen.preventAutoHideAsync();
 
 const prefix = createURL("/");
 
-export function App() {
-  const colorScheme = useColorScheme();
-
-  const theme = colorScheme === "dark" ? LightTheme : LightTheme;
-
+function AppContent() {
+  const { theme } = useThemeContextContext();
   return (
-    <ThemeProvider>
+    <ApplicationProvider {...eva} theme={{ ...eva.light, ...customEvaTheme }}>
       <Provider store={store}>
-        <Navigation
-          theme={theme}
-          linking={{
-            enabled: "auto",
-            prefixes: [prefix],
-          }}
-          onReady={() => {
-            SplashScreen.hideAsync();
-          }}
-        />
+        <SafeAreaProvider>
+          <Navigation
+            linking={{
+              enabled: "auto",
+              prefixes: [prefix],
+            }}
+            onReady={() => {
+              SplashScreen.hideAsync();
+            }}
+          />
+        </SafeAreaProvider>
       </Provider>
-    </ThemeProvider>
+    </ApplicationProvider>
+  );
+}
+
+export function App() {
+  return (
+    <>
+      <IconRegistry icons={EvaIconsPack} />
+      <ThemeProvider>
+        <AppContent />
+      </ThemeProvider>
+    </>
   );
 }

@@ -1,23 +1,23 @@
+import { Input, Text } from "@ui-kitten/components";
 import { useState } from "react";
 import {
   StyleProp,
   StyleSheet,
-  Text,
   TextInput,
   TextInputProps,
   TextStyle,
   View,
   ViewStyle,
 } from "react-native";
-import { useTheme } from "../contexts/ThemeContext";
-import { Radius } from "../utils/theme";
+import { Spacing } from "../utils/theme";
+import { LucideIcon } from "lucide-react-native";
 
 interface TextInputFieldProps extends TextInputProps {
   label?: string;
   containerStyle?: StyleProp<ViewStyle>;
   inputStyle?: StyleProp<TextStyle>;
   error?: string;
-  icon?: React.ReactNode;
+  icon?: LucideIcon;
 }
 
 export function TextInputField({
@@ -28,44 +28,32 @@ export function TextInputField({
   icon,
   ...rest
 }: TextInputFieldProps) {
-  const { colors } = useTheme();
   const [isFocused, setIsFocused] = useState(false);
+  const Icon = icon || null;
 
   return (
     <View style={[styles.container, containerStyle]}>
-      {label && <Text>{label}</Text>}
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={[
-            styles.textInput,
-            {
-              backgroundColor: colors.base100,
-              borderColor: isFocused ? colors.primary : colors.base100,
-              color: colors.baseContent,
-            },
-            inputStyle,
-          ]}
-          {...rest}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-        />
-        <View style={styles.iconContainer}>{icon && icon}</View>
-      </View>
+      <Input
+        style={[styles.textInput, inputStyle]}
+        placeholder="Place your Text"
+        value={rest.value}
+        label={label}
+        accessoryLeft={
+          Icon ? () => <Icon size={20} strokeWidth={1.5} /> : undefined
+        }
+        {...rest}
+      />
       {error && <Text style={{ color: "red" }}>{error}</Text>}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {},
-  inputContainer: { flexDirection: "row", alignItems: "center" },
+  container: {
+    marginBottom: Spacing.md,
+  },
   textInput: {
     flex: 1,
-    paddingRight: 16,
-    paddingLeft: 32,
-    paddingBlock: 12,
-    borderRadius: Radius.lg,
-    borderWidth: 1,
   },
   iconContainer: {
     position: "absolute",
