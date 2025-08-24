@@ -22,6 +22,7 @@ import {
 import { Map } from "./screens/Map";
 import { Visited } from "./screens/Visited";
 import { PlaceDetail } from "./screens/PlaceDetail";
+import { AddPlace } from "./screens/AddPlace";
 
 const HomeTabs = createBottomTabNavigator({
   screens: {
@@ -68,7 +69,7 @@ const RootStack = createNativeStackNavigator({
       screen: HomeTabs,
       options: {
         title: "Historical Places",
-        headerShown: true,
+        headerShown: false,
       },
     },
     PlaceDetail: {
@@ -76,19 +77,30 @@ const RootStack = createNativeStackNavigator({
       linking: {
         path: ":id",
       },
-    },
-    Profile: {
-      screen: Profile,
-      linking: {
-        path: ":user(@[a-zA-Z0-9-_]+)",
-        parse: {
-          user: (value) => value.replace(/^@/, ""),
-        },
-        stringify: {
-          user: (value) => `@${value}`,
-        },
+      options: {
+        headerShown: false,
       },
     },
+    AddPlace: {
+      screen: AddPlace,
+      options: {
+        title: "Create New Place",
+        headerShown: true,
+        headerBackButtonDisplayMode: "minimal",
+      },
+    },
+    // Profile: {
+    //   screen: Profile,
+    //   linking: {
+    //     path: ":user(@[a-zA-Z0-9-_]+)",
+    //     parse: {
+    //       user: (value) => value.replace(/^@/, ""),
+    //     },
+    //     stringify: {
+    //       user: (value) => `@${value}`,
+    //     },
+    //   },
+    // },
     Settings: {
       screen: Settings,
       options: ({ navigation }) => ({

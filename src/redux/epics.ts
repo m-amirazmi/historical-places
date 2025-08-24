@@ -18,7 +18,7 @@ export const fetchPlacesEpic: Epic<PlacesAction, PlacesAction, RootState> = (
     switchMap(() => {
       return from(fetchPlacesApi()).pipe(
         map(
-          (response) => fetchPlacesSuccess(response),
+          (response) => fetchPlacesSuccess(response.data),
           catchError((err) => of(fetchPlaceDetailError(err.message)))
         )
       );
@@ -36,7 +36,7 @@ export const fetchPlaceDetailEpic: Epic<
     switchMap((action) => {
       return from(fetchPlaceDetailApi(action.payload)).pipe(
         map(
-          (response) => fetchPlaceDetailSuccess(response),
+          (response) => fetchPlaceDetailSuccess(response.data),
           catchError((err) => of(fetchPlaceDetailError(err.message)))
         )
       );

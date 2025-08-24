@@ -1,6 +1,12 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Place } from "../utils/types";
 
-export function PlaceCard({ place, onPress }) {
+type PlaceCardProps = {
+  place: Place;
+  onPress: () => void;
+};
+
+export function PlaceCard({ place, onPress }: PlaceCardProps) {
   return (
     <TouchableOpacity style={styles.card} onPress={onPress}>
       <View style={styles.content}>

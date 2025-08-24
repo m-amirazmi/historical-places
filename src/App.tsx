@@ -8,6 +8,8 @@ import { useColorScheme } from "react-native";
 import { Provider } from "react-redux";
 import { Navigation } from "./navigation";
 import { store } from "./redux/store";
+import { DarkTheme, LightTheme } from "./utils/theme";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 Asset.loadAsync([
   ...NavigationAssets,
@@ -22,20 +24,22 @@ const prefix = createURL("/");
 export function App() {
   const colorScheme = useColorScheme();
 
-  // const theme = colorScheme === "dark" ? DarkTheme : DefaultTheme;
+  const theme = colorScheme === "dark" ? LightTheme : LightTheme;
 
   return (
-    <Provider store={store}>
-      <Navigation
-        theme={DefaultTheme}
-        linking={{
-          enabled: "auto",
-          prefixes: [prefix],
-        }}
-        onReady={() => {
-          SplashScreen.hideAsync();
-        }}
-      />
-    </Provider>
+    <ThemeProvider>
+      <Provider store={store}>
+        <Navigation
+          theme={theme}
+          linking={{
+            enabled: "auto",
+            prefixes: [prefix],
+          }}
+          onReady={() => {
+            SplashScreen.hideAsync();
+          }}
+        />
+      </Provider>
+    </ThemeProvider>
   );
 }

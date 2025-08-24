@@ -7,9 +7,9 @@ export interface Address {
   country: string;
 }
 
-export interface Location {
-  type: string;
-  coordinates: number[]; // [lng, lat]
+export interface Coordinate {
+  latitude: number;
+  longitude: number;
 }
 
 export interface Place {
@@ -17,7 +17,7 @@ export interface Place {
   name: string;
   description: string;
   address: Address;
-  location: Location;
+  coordinate: Coordinate;
   imageUrl?: string;
   category?: string;
   rating?: number;
