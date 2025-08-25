@@ -112,10 +112,18 @@ export const refetchPlacesAfterVisitedUpdateEpic: Epic<
   PlacesAction,
   PlacesAction,
   RootState
-> = (action$) => {
+> = (action$, state$) => {
   return action$.pipe(
     ofType(UPDATE_PLACE_VISITED_SUCCESS),
-    mergeMap(() => [{ type: FETCH_PLACES }, { type: FETCH_VISITED_PLACES }])
+    mergeMap(() => {
+      // Get the last visited place id from state, or use a default value
+      const selectedPlaceId = state$.value.places.selectedPlace?.id || "";
+      return [
+        { type: FETCH_PLACES },
+        { type: FETCH_VISITED_PLACES },
+        { type: FETCH_PLACE_DETAIL, payload: selectedPlaceId },
+      ];
+    })
   );
 };
 

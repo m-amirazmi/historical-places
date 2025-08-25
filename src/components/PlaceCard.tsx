@@ -37,7 +37,7 @@ export function PlaceCard({ place, onPress }: PlaceCardProps) {
       ) : (
         <TouchableWithoutFeedback onPress={() => handleVisited(true)}>
           <View style={styles.unvisited}>
-            <Plus color="green" />
+            <Plus color="grey" />
           </View>
         </TouchableWithoutFeedback>
       )}
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   name: { fontWeight: "bold", fontSize: 16 },
   description: { color: "#555", marginTop: 4 },
   unvisited: {
-    backgroundColor: "rgba(3, 252, 98, 0.2)",
+    backgroundColor: "rgba(205, 207, 206, 0.2)",
     alignItems: "center",
     justifyContent: "center",
     padding: 8,

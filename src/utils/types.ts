@@ -1,7 +1,7 @@
 export interface Address {
   id: string;
-  addressLine1: string;
-  addressLine2?: string;
+  address_one: string;
+  address_two?: string;
   city: string;
   postcode: string;
   state: string;
