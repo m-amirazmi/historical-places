@@ -4,11 +4,13 @@ import {
   createStaticNavigation,
   StaticParamList,
 } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from "@react-navigation/native-stack";
 import { Image } from "react-native";
 import bell from "../assets/bell.png";
 import newspaper from "../assets/newspaper.png";
-import { Home } from "./screens/Home";
 import { Profile } from "./screens/Profile";
 import { Settings } from "./screens/Settings";
 import { Updates } from "./screens/Updates";
@@ -22,23 +24,23 @@ import {
 import { Map } from "./screens/Map";
 import { Visited } from "./screens/Visited";
 import { PlaceDetail } from "./screens/PlaceDetail";
-import { AddPlace } from "./screens/AddPlace";
-import { useThemeContextContext } from "../contexts/ThemeContext";
+import { Home } from "./screens/Home";
 
 const HomeTabs = createBottomTabNavigator({
   screens: {
     Home: {
       screen: Home,
       options: {
-        headerShown: false,
+        headerShown: true,
         tabBarShowLabel: false,
+        title: "Historical Places",
         tabBarIcon: (props) => <House {...props} strokeWidth={1.5} />,
       },
     },
     Map: {
       screen: Map,
       options: {
-        headerShown: false,
+        headerShown: true,
         tabBarShowLabel: false,
         tabBarIcon: (props) => <MapIcon {...props} strokeWidth={1.5} />,
       },
@@ -46,7 +48,7 @@ const HomeTabs = createBottomTabNavigator({
     Visited: {
       screen: Visited,
       options: {
-        headerShown: false,
+        headerShown: true,
         tabBarShowLabel: false,
         tabBarIcon: (props) => (
           <MapPinCheckInside {...props} strokeWidth={1.5} />
@@ -80,14 +82,6 @@ const RootStack = createNativeStackNavigator({
       },
       options: {
         headerShown: false,
-      },
-    },
-    AddPlace: {
-      screen: AddPlace,
-      options: {
-        title: "Create New Place",
-        headerShown: true,
-        headerBackButtonDisplayMode: "minimal",
       },
     },
     // Profile: {
@@ -128,6 +122,7 @@ const RootStack = createNativeStackNavigator({
 export const Navigation = createStaticNavigation(RootStack);
 
 export type RootStackParamList = StaticParamList<typeof RootStack>;
+export type Nav = NativeStackNavigationProp<RootStackParamList>;
 
 declare global {
   namespace ReactNavigation {
