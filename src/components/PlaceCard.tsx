@@ -1,6 +1,14 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 import { Place } from "../utils/types";
-import { useTheme } from "@ui-kitten/components";
+import { Check, Plus } from "lucide-react-native";
+import { useDispatch } from "react-redux";
+import { updatePlaceVisited } from "../redux/actions";
 
 type PlaceCardProps = {
   place: Place;
@@ -8,18 +16,31 @@ type PlaceCardProps = {
 };
 
 export function PlaceCard({ place, onPress }: PlaceCardProps) {
-  const theme = useTheme();
+  const dispatch = useDispatch();
+
+  const handleVisited = (isVisited: boolean) => {
+    dispatch(updatePlaceVisited(place.id, isVisited));
+  };
 
   return (
-    <TouchableOpacity
-      style={[styles.card, { backgroundColor: theme["color-basic-200"] }]}
-      onPress={onPress}
-    >
+    <TouchableOpacity style={[styles.card]} onPress={onPress}>
       <View style={styles.content}>
         <Text style={styles.name}>{place.name}</Text>
         <Text style={styles.description}>{place.description}</Text>
-        {place.isVisited && <Text style={styles.visited}>✓ Visited</Text>}
       </View>
+      {place.is_visited ? (
+        <TouchableWithoutFeedback onPress={() => handleVisited(false)}>
+          <View style={styles.visited}>
+            <Check color="green" />
+          </View>
+        </TouchableWithoutFeedback>
+      ) : (
+        <TouchableWithoutFeedback onPress={() => handleVisited(true)}>
+          <View style={styles.unvisited}>
+            <Plus color="grey" />
+          </View>
+        </TouchableWithoutFeedback>
+      )}
     </TouchableOpacity>
   );
 }
@@ -32,10 +53,25 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     elevation: 2,
     flex: 1,
+    alignItems: "center",
+    backgroundColor: "#fff",
+    gap: 8,
   },
   image: { width: 80, height: 80, borderRadius: 8, marginRight: 12 },
   content: { flex: 1 },
   name: { fontWeight: "bold", fontSize: 16 },
   description: { color: "#555", marginTop: 4 },
-  visited: { marginTop: 6, color: "green", fontWeight: "bold" },
+  unvisited: {
+    backgroundColor: "rgba(205, 207, 206, 0.2)",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 8,
+    borderRadius: 8,
+  },
+  visited: {
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 8,
+    borderRadius: 8,
+  },
 });

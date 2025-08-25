@@ -2,7 +2,14 @@ import { composeWithDevTools } from "@redux-devtools/extension";
 import { applyMiddleware, legacy_createStore as createStore } from "redux";
 import { combineEpics, createEpicMiddleware } from "redux-observable";
 import { PlacesAction } from "./actions";
-import { fetchPlaceDetailEpic, fetchPlacesEpic } from "./epics";
+import {
+  fetchAddressByIdEpic,
+  fetchPlaceDetailEpic,
+  fetchPlacesEpic,
+  fetchVisitedPlacesEpic,
+  refetchPlacesAfterVisitedUpdateEpic,
+  updatePlaceDetailEpic,
+} from "./epics";
 import { rootReducer, RootState } from "./reducers";
 
 const epicMiddleware = createEpicMiddleware<
@@ -11,7 +18,14 @@ const epicMiddleware = createEpicMiddleware<
   RootState
 >();
 
-const rootEpic = combineEpics(fetchPlacesEpic, fetchPlaceDetailEpic);
+const rootEpic = combineEpics(
+  fetchPlacesEpic,
+  fetchPlaceDetailEpic,
+  updatePlaceDetailEpic,
+  fetchVisitedPlacesEpic,
+  refetchPlacesAfterVisitedUpdateEpic,
+  fetchAddressByIdEpic
+);
 
 // @ts-expect-error createStore is still valid for this project
 export const store = createStore(

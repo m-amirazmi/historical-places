@@ -4,11 +4,13 @@ import {
   createStaticNavigation,
   StaticParamList,
 } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from "@react-navigation/native-stack";
 import { Image } from "react-native";
 import bell from "../assets/bell.png";
 import newspaper from "../assets/newspaper.png";
-import { Home } from "./screens/Home";
 import { Profile } from "./screens/Profile";
 import { Settings } from "./screens/Settings";
 import { Updates } from "./screens/Updates";
@@ -22,32 +24,42 @@ import {
 import { Map } from "./screens/Map";
 import { Visited } from "./screens/Visited";
 import { PlaceDetail } from "./screens/PlaceDetail";
-import { AddPlace } from "./screens/AddPlace";
-import { useThemeContextContext } from "../contexts/ThemeContext";
+import { Home } from "./screens/Home";
 
 const HomeTabs = createBottomTabNavigator({
   screens: {
     Home: {
       screen: Home,
       options: {
-        headerShown: false,
+        headerShown: true,
         tabBarShowLabel: false,
+        title: "Historical Places",
+        headerTitleStyle: {
+          fontSize: 16,
+        },
         tabBarIcon: (props) => <House {...props} strokeWidth={1.5} />,
       },
     },
-    Map: {
-      screen: Map,
-      options: {
-        headerShown: false,
-        tabBarShowLabel: false,
-        tabBarIcon: (props) => <MapIcon {...props} strokeWidth={1.5} />,
-      },
-    },
+    // Map: {
+    //   screen: Map,
+    //   options: {
+    //     headerShown: true,
+    //     tabBarShowLabel: false,
+    //     headerTitleStyle: {
+    //       fontSize: 16,
+    //     },
+    //     tabBarIcon: (props) => <MapIcon {...props} strokeWidth={1.5} />,
+    //   },
+    // },
     Visited: {
       screen: Visited,
       options: {
-        headerShown: false,
+        headerShown: true,
         tabBarShowLabel: false,
+        title: "Visited Places",
+        headerTitleStyle: {
+          fontSize: 16,
+        },
         tabBarIcon: (props) => (
           <MapPinCheckInside {...props} strokeWidth={1.5} />
         ),
@@ -58,6 +70,9 @@ const HomeTabs = createBottomTabNavigator({
       options: {
         headerShown: false,
         tabBarShowLabel: false,
+        headerTitleStyle: {
+          fontSize: 16,
+        },
         tabBarIcon: (props) => <UserRound {...props} strokeWidth={1.5} />,
       },
     },
@@ -79,29 +94,14 @@ const RootStack = createNativeStackNavigator({
         path: ":id",
       },
       options: {
-        headerShown: false,
-      },
-    },
-    AddPlace: {
-      screen: AddPlace,
-      options: {
-        title: "Create New Place",
+        title: "Place Detail",
         headerShown: true,
+        headerTitleStyle: {
+          fontSize: 14,
+        },
         headerBackButtonDisplayMode: "minimal",
       },
     },
-    // Profile: {
-    //   screen: Profile,
-    //   linking: {
-    //     path: ":user(@[a-zA-Z0-9-_]+)",
-    //     parse: {
-    //       user: (value) => value.replace(/^@/, ""),
-    //     },
-    //     stringify: {
-    //       user: (value) => `@${value}`,
-    //     },
-    //   },
-    // },
     Settings: {
       screen: Settings,
       options: ({ navigation }) => ({
@@ -128,6 +128,7 @@ const RootStack = createNativeStackNavigator({
 export const Navigation = createStaticNavigation(RootStack);
 
 export type RootStackParamList = StaticParamList<typeof RootStack>;
+export type Nav = NativeStackNavigationProp<RootStackParamList>;
 
 declare global {
   namespace ReactNavigation {

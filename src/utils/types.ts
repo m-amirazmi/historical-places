@@ -1,6 +1,7 @@
 export interface Address {
-  addressLine1: string;
-  addressLine2?: string;
+  id: string;
+  address_one: string;
+  address_two?: string;
   city: string;
   postcode: string;
   state: string;
@@ -8,20 +9,21 @@ export interface Address {
 }
 
 export interface Coordinate {
+  id: string;
   latitude: number;
   longitude: number;
 }
 
 export interface Place {
-  _id: string;
+  id: string;
   name: string;
   description: string;
-  address: Address;
-  coordinate: Coordinate;
-  imageUrl?: string;
+  address_id?: string;
+  coordinate_id?: string;
+  image_url?: string;
   category?: string;
   rating?: number;
-  isVisited: boolean;
-  createdAt: string;
-  updatedAt: string;
+  is_visited: boolean;
+  created_at: string;
+  updated_at: string;
 }

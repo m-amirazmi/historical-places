@@ -1,37 +1,269 @@
 
-### Create a new place
-GET https://dsrroahuziyleoxdzyps.supabase.co/rest/v1/tasks
+### Get all places
+GET https://dsrroahuziyleoxdzyps.supabase.co/rest/v1/places?id=eq.1&limit=1
 Content-Type: application/json
 apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzcnJvYWh1eml5bGVveGR6eXBzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU5NjQyODEsImV4cCI6MjA3MTU0MDI4MX0.WLzdADgy9o6PDP6g8yMdFB3S9dbuxhLxgwjfmNoL8Uk
 
 
-
 ### Create a new place
-POST http://localhost:3000/places
+# POST https://dsrroahuziyleoxdzyps.supabase.co/rest/v1/places
+# Content-Type: application/json
+# apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzcnJvYWh1eml5bGVveGR6eXBzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU5NjQyODEsImV4cCI6MjA3MTU0MDI4MX0.WLzdADgy9o6PDP6g8yMdFB3S9dbuxhLxgwjfmNoL8Uk
+
+# [
+#   {
+#     "name": "Sultan Abdul Samad Building",
+#     "description": "Iconic Moorish-style building constructed in 1897, located in front of Dataran Merdeka, Kuala Lumpur.",
+#     "is_visited": false,
+#     "address_id": 2
+#   },
+#   {
+#     "name": "Kota Kinabalu City Mosque",
+#     "description": "Famous floating mosque in Sabah, built in 2000 but designed with historical Islamic architectural inspiration.",
+#     "is_visited": false,
+#     "address_id": 3
+#   },
+#   {
+#     "name": "Kellie's Castle",
+#     "description": "An unfinished mansion built by a Scottish planter in the early 20th century near Batu Gajah, Perak.",
+#     "is_visited": false,
+#     "address_id": 4
+#   },
+#   {
+#     "name": "Penang Fort Cornwallis",
+#     "description": "Star-shaped fort built by the British East India Company in 1786, located in George Town, Penang.",
+#     "is_visited": false,
+#     "address_id": 5
+#   },
+#   {
+#     "name": "St. Paul's Church",
+#     "description": "Oldest church building in Malaysia, built by the Portuguese in 1521, located in Melaka.",
+#     "is_visited": false,
+#     "address_id": 6
+#   },
+#   {
+#     "name": "Cheong Fatt Tze Mansion",
+#     "description": "Also known as the Blue Mansion, an iconic heritage house in George Town, Penang, built in the 1880s.",
+#     "is_visited": false,
+#     "address_id": 7
+#   },
+#   {
+#     "name": "Sultan Abu Bakar State Mosque",
+#     "description": "Grand mosque built in the 19th century in Johor Bahru with Victorian and Moorish architectural influences.",
+#     "is_visited": false,
+#     "address_id": 8
+#   },
+#   {
+#     "name": "Istana Seri Menanti",
+#     "description": "Wooden palace of Negeri Sembilan's royal family, built entirely without nails, dating back to the early 20th century.",
+#     "is_visited": false,
+#     "address_id": 9
+#   },
+#   {
+#     "name": "Thean Hou Temple",
+#     "description": "One of the oldest and largest Chinese temples in Southeast Asia, located in Kuala Lumpur.",
+#     "is_visited": false,
+#     "address_id": 10
+#   },
+#   {
+#     "name": "Stadthuys",
+#     "description": "Historic Dutch administrative building in Melaka, painted in red, built in 1650.",
+#     "is_visited": false,
+#     "address_id": 11
+#   },
+#   {
+#     "name": "Cheng Hoon Teng Temple",
+#     "description": "Oldest functioning Chinese temple in Malaysia, built in 1673 in Melaka.",
+#     "is_visited": false,
+#     "address_id": 12
+#   },
+#   {
+#     "name": "Bukit China",
+#     "description": "Largest Chinese graveyard outside China, located in Melaka, with over 12,000 graves.",
+#     "is_visited": false,
+#     "address_id": 13
+#   },
+#   {
+#     "name": "Royal Museum of Perak",
+#     "description": "Historical museum located in the former palace of the Perak Sultan in Kuala Kangsar.",
+#     "is_visited": false,
+#     "address_id": 14
+#   },
+#   {
+#     "name": "Kota Bharu Museum",
+#     "description": "Museum showcasing Kelantanese culture and history, located in the state capital Kota Bharu.",
+#     "is_visited": false,
+#     "address_id": 15
+#   },
+#   {
+#     "name": "Malacca Sultanate Palace Museum",
+#     "description": "Replica of the 15th-century palace of the Malacca Sultanate, showcasing Malay history and culture.",
+#     "is_visited": false,
+#     "address_id": 16
+#   },
+#   {
+#     "name": "Ipoh Railway Station",
+#     "description": "Built in 1917 in Moorish architecture, famously known as the 'Taj Mahal of Ipoh'.",
+#     "is_visited": false,
+#     "address_id": 17
+#   },
+#   {
+#     "name": "Taiping Lake Gardens",
+#     "description": "Former British colonial mining town’s first public garden in 1880s, now a popular historical park.",
+#     "is_visited": false,
+#     "address_id": 18
+#   },
+#   {
+#     "name": "Christ Church Melaka",
+#     "description": "18th-century Dutch Protestant church located in Melaka, famous for its red exterior.",
+#     "is_visited": false,
+#     "address_id": 19
+#   },
+#   {
+#     "name": "Penang Peranakan Mansion",
+#     "description": "Museum showcasing the lifestyle of the Peranakan Chinese in the early 20th century, located in George Town, Penang.",
+#     "is_visited": false,
+#     "address_id": 20
+#   }
+# ]
+
+
+# ### Set address
+# POST https://dsrroahuziyleoxdzyps.supabase.co/rest/v1/addresses
+# Content-Type: application/json
+# apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzcnJvYWh1eml5bGVveGR6eXBzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU5NjQyODEsImV4cCI6MjA3MTU0MDI4MX0.WLzdADgy9o6PDP6g8yMdFB3S9dbuxhLxgwjfmNoL8Uk
+
+# [{
+#   "address_one": "Jalan Kota",
+#   "city": "Melaka",
+#   "postcode": "75000",
+#   "state": "Melaka",
+#   "country": "Malaysia"
+# }, {
+#     "address_one": "Jalan Tun Syed Sheh Barakbah",
+#     "city": "George Town",
+#     "postcode": "10200",
+#     "state": "Penang",
+#     "country": "Malaysia"
+#   },
+#   {
+#     "address_one": "Bukit St. Paul",
+#     "city": "Melaka",
+#     "postcode": "75000",
+#     "state": "Melaka",
+#     "country": "Malaysia"
+#   },
+#   {
+#     "address_one": "38, Leith Street",
+#     "city": "George Town",
+#     "postcode": "10200",
+#     "state": "Penang",
+#     "country": "Malaysia"
+#   },
+#   {
+#     "address_one": "Jalan Gertak Merah",
+#     "city": "Johor Bahru",
+#     "postcode": "80000",
+#     "state": "Johor",
+#     "country": "Malaysia"
+#   },
+#   {
+#     "address_one": "Jalan Istana",
+#     "city": "Seri Menanti",
+#     "postcode": "72000",
+#     "state": "Negeri Sembilan",
+#     "country": "Malaysia"
+#   },
+#   {
+#     "address_one": "65, Persiaran Endah",
+#     "city": "Kuala Lumpur",
+#     "postcode": "50460",
+#     "state": "Kuala Lumpur",
+#     "country": "Malaysia"
+#   },
+#   {
+#     "address_one": "Jalan Kota",
+#     "city": "Melaka",
+#     "postcode": "75000",
+#     "state": "Melaka",
+#     "country": "Malaysia"
+#   },
+#   {
+#     "address_one": "Lot 25, Jalan Tokong",
+#     "city": "Melaka",
+#     "postcode": "75200",
+#     "state": "Melaka",
+#     "country": "Malaysia"
+#   },
+#   {
+#     "address_one": "Jalan Bukit China",
+#     "city": "Melaka",
+#     "postcode": "75000",
+#     "state": "Melaka",
+#     "country": "Malaysia"
+#   },
+#   {
+#     "address_one": "Jalan Istana",
+#     "city": "Kuala Kangsar",
+#     "postcode": "33000",
+#     "state": "Perak",
+#     "country": "Malaysia"
+#   },
+#   {
+#     "address_one": "Jalan Sultan Yahya Petra",
+#     "city": "Kota Bharu",
+#     "postcode": "15000",
+#     "state": "Kelantan",
+#     "country": "Malaysia"
+#   },
+#   {
+#     "address_one": "Jalan Kota",
+#     "city": "Melaka",
+#     "postcode": "75000",
+#     "state": "Melaka",
+#     "country": "Malaysia"
+#   },
+#   {
+#     "address_one": "Jalan Stesen",
+#     "city": "Ipoh",
+#     "postcode": "30000",
+#     "state": "Perak",
+#     "country": "Malaysia"
+#   },
+#   {
+#     "address_one": "Jalan Taman Tasik",
+#     "city": "Taiping",
+#     "postcode": "34000",
+#     "state": "Perak",
+#     "country": "Malaysia"
+#   },
+#   {
+#     "address_one": "Jalan Gereja",
+#     "city": "Melaka",
+#     "postcode": "75000",
+#     "state": "Melaka",
+#     "country": "Malaysia"
+#   },
+#   {
+#     "address_one": "29, Church Street",
+#     "city": "George Town",
+#     "postcode": "10200",
+#     "state": "Penang",
+#     "country": "Malaysia"
+#   }
+# ]
+
+### Update Visited Place
+PATCH https://dsrroahuziyleoxdzyps.supabase.co/rest/v1/places?id=eq.1&limit=1
 Content-Type: application/json
+apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzcnJvYWh1eml5bGVveGR6eXBzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU5NjQyODEsImV4cCI6MjA3MTU0MDI4MX0.WLzdADgy9o6PDP6g8yMdFB3S9dbuxhLxgwjfmNoL8Uk
+Prefer: return=representation
 
 {
-  "name": "Eiffel Tower",
-  "location": "Paris, France",
-  "year_built": 1889
+  "is_visited": true
 }
 
-### Read all places
-GET http://localhost:3000/places
-
-### Read a single place by ID
-GET http://localhost:3000/places/1
-
-### Update a place by ID
-PUT http://localhost:3000/places/1
+### Fetch visited places only
+GET https://dsrroahuziyleoxdzyps.supabase.co/rest/v1/places?is_visited=eq.true
 Content-Type: application/json
-
-{
-  "name": "Eiffel Tower",
-  "location": "Paris, France",
-  "year_built": 1889,
-  "description": "Iconic landmark in Paris"
-}
-
-### Delete a place by ID
-DELETE http://localhost:3000/places/1
+apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzcnJvYWh1eml5bGVveGR6eXBzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU5NjQyODEsImV4cCI6MjA3MTU0MDI4MX0.WLzdADgy9o6PDP6g8yMdFB3S9dbuxhLxgwjfmNoL8Uk
