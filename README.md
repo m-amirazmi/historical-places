@@ -1,66 +1,74 @@
-# Starter Template with React Navigation
+# Historical Places
 
-This is a minimal starter template for React Native apps using Expo and React Navigation.
+A React Native starter template for building mobile applications with Expo, React Navigation, and TypeScript. This project is designed to run on both mobile and web platforms.
 
-It includes the following:
+### ⚠️⚠️⚠️ Disclaimer ⚠️⚠️⚠️
 
-- Example [Native Stack](https://reactnavigation.org/docs/native-stack-navigator) with a nested [Bottom Tab](https://reactnavigation.org/docs/bottom-tab-navigator)
-- Web support with [React Native for Web](https://necolas.github.io/react-native-web/)
-- TypeScript support and configured for React Navigation
-- Automatic [deep link](https://reactnavigation.org/docs/deep-linking) and [URL handling configuration](https://reactnavigation.org/docs/configuring-links)
-- Theme support [based on system appearance](https://reactnavigation.org/docs/themes/#using-the-operating-system-preferences)
-- Expo [Development Build](https://docs.expo.dev/develop/development-builds/introduction/) with [Continuous Native Generation](https://docs.expo.dev/workflow/continuous-native-generation/)
-- Edge-to-edge configured on Android with [`react-native-edge-to-edge`](https://www.npmjs.com/package/react-native-edge-to-edge)
+I'm so sorry if this app seems like half baked. I'm very new to React Native and also the Observable Pattern with Redux Observable. I have learn a lot of things throughout building this app. I have not use or heard anything about Redux Observable to handle async task in Redux as I'm comfortable with `createAsyncThunk` with Redux Toolkit. Handling API call through listening on stream of events quite new and interesting to me. This might be my next go to pattern when I building my next app in future.
 
-## Getting Started
+As for React Native, I have hard time to figure out how to style the app properly. First I go barebone with StyleSheet and using simple DaisyUI kind of theme. Looks clean but when try access on Android, the UI getting weird where the element overlapping each other. Then I try Kitten UI. Kitten UI not solve the issue. Lastly, I revert back to barebone style but with very minimal UI to avoid unnecessary overlapping.
 
-1. Create a new project using this template:
+However, I just learnt that, instead of using PX, I should use % instead especially on spacing due to different devices have different kind of pixel rendering.
 
-   ```sh
-   npx create-expo-app@latest --template react-navigation/template
-   ```
+To be honest, I already plan to build atleast interesting app. I have plan to put:
 
-2. Edit the `app.json` file to configure the `name`, `slug`, `scheme` and bundle identifiers (`ios.bundleIdentifier` and `android.bundleIdentifier`) for your app.
+- Fullscreen map with horizontal scrolling places
+- Ability to add new historical places (already prepare the code for POST req)
+- Share the place to others through WhatsApp (though I do not know how to implement this yet)
 
-3. Edit the `src/App.tsx` file to start working on your app.
+## Anyway, this assessment really teach me a lot. Thank you so much for giving me a chance to try building this app.
 
-## Running the app
+## Features
 
-- Install the dependencies:
-
-  ```sh
-  npm install
-  ```
-
-- Start the development server:
-
-  ```sh
-  npm start
-  ```
-
-- Build and run iOS and Android development builds:
-
-  ```sh
-  npm run ios
-  # or
-  npm run android
-  ```
-
-- In the terminal running the development server, press `i` to open the iOS simulator, `a` to open the Android device or emulator, or `w` to open the web browser.
-
-## Notes
-
-This project uses a [development build](https://docs.expo.dev/develop/development-builds/introduction/) and cannot be run with [Expo Go](https://expo.dev/go). To run the app with Expo Go, edit the `package.json` file, remove the `expo-dev-client` package and `--dev-client` flag from the `start` script.
-
-We highly recommend using the development builds for normal development and testing.
-
-The `ios` and `android` folder are gitignored in the project by default as they are automatically generated during the build process ([Continuous Native Generation](https://docs.expo.dev/workflow/continuous-native-generation/)). This means that you should not edit these folders directly and use [config plugins](https://docs.expo.dev/config-plugins/) instead. However, if you need to edit these folders, you can remove them from the `.gitignore` file so that they are tracked by git.
-
-## Resources
-
-- [React Navigation documentation](https://reactnavigation.org/)
-- [Expo documentation](https://docs.expo.dev/)
+- **React Native with Expo** – Simplifies development and deployment.
+- **React Navigation** – Handles navigation between screens.
+- **TypeScript Support** – Ensures type safety and better development experience.
+- **Web Support** – Works with React Native for Web.
+- **Deep Linking & URL Handling** – Supports app navigation via URLs.
+- **Theming** – Centralized theme support for consistent styling.
+- **Starter Template** – Ready-to-use structure for building mobile apps.
 
 ---
 
-Demo assets are from [lucide.dev](https://lucide.dev/)
+## Project Structure
+
+```bash
+├── assets/ # Images and static assets
+├── ios/ # iOS-specific code and configurations
+├── src/ # Main source code of the application
+├── index.tsx # App entry point
+├── package.json # Project dependencies and scripts
+├── tsconfig.json # TypeScript configuration
+├── app.json # Expo app configuration
+├── eas.json # Expo Application Services configuration
+├── requests.http # Sample HTTP requests for testing
+```
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js >= 18
+- Expo CLI
+- Yarn or npm
+
+### Installation
+
+```bash
+git clone https://github.com/m-amirazmi/historical-places.git
+cd historical-places
+npm install
+# or
+yarn install
+```
+
+### Running the app
+
+```bash
+# Start Expo development server
+npm start
+# or
+yarn start
+```
