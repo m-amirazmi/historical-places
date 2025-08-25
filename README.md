@@ -4,7 +4,7 @@ A React Native starter template for building mobile applications with Expo, Reac
 
 ### ⚠️⚠️⚠️ Disclaimer ⚠️⚠️⚠️
 
-I'm so sorry if this app seems like half baked. I'm very new to React Native and also the Observable Pattern with Redux Observable. I have learn a lot of things throughout building this app. I have not use or heard anything about Redux Observable to handle async task in Redux as I'm comfortable with `createAsyncThunk` with Redux Toolkit. Handling API call through listening on stream of events quite new and interesting to me. This might be my next go to pattern when I building my next app in future.
+I'm so sorry if this app seems like half baked. I'm very **new to React Native** and also the **Observable Pattern with Redux Observable**. I have learn a lot of things throughout building this app. I have not use or heard anything about Redux Observable to handle async task in Redux as I'm comfortable with `createAsyncThunk` with Redux Toolkit. Handling API call through listening on stream of events quite new and interesting to me. This might be my next go to pattern when I building my next app in future.
 
 As for React Native, I have hard time to figure out how to style the app properly. First I go barebone with StyleSheet and using simple DaisyUI kind of theme. Looks clean but when try access on Android, the UI getting weird where the element overlapping each other. Then I try Kitten UI. Kitten UI not solve the issue. Lastly, I revert back to barebone style but with very minimal UI to avoid unnecessary overlapping.
 
@@ -16,7 +16,7 @@ To be honest, I already plan to build atleast interesting app. I have plan to pu
 - Ability to add new historical places (already prepare the code for POST req)
 - Share the place to others through WhatsApp (though I do not know how to implement this yet)
 
-## Anyway, this assessment really teach me a lot. Thank you so much for giving me a chance to try building this app.
+Anyway, this assessment really teach me a lot. Thank you so much for giving me a chance to try building this app.
 
 ## Features
 
