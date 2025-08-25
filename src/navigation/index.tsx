@@ -34,22 +34,32 @@ const HomeTabs = createBottomTabNavigator({
         headerShown: true,
         tabBarShowLabel: false,
         title: "Historical Places",
+        headerTitleStyle: {
+          fontSize: 16,
+        },
         tabBarIcon: (props) => <House {...props} strokeWidth={1.5} />,
       },
     },
-    Map: {
-      screen: Map,
-      options: {
-        headerShown: true,
-        tabBarShowLabel: false,
-        tabBarIcon: (props) => <MapIcon {...props} strokeWidth={1.5} />,
-      },
-    },
+    // Map: {
+    //   screen: Map,
+    //   options: {
+    //     headerShown: true,
+    //     tabBarShowLabel: false,
+    //     headerTitleStyle: {
+    //       fontSize: 16,
+    //     },
+    //     tabBarIcon: (props) => <MapIcon {...props} strokeWidth={1.5} />,
+    //   },
+    // },
     Visited: {
       screen: Visited,
       options: {
         headerShown: true,
         tabBarShowLabel: false,
+        title: "Visited Places",
+        headerTitleStyle: {
+          fontSize: 16,
+        },
         tabBarIcon: (props) => (
           <MapPinCheckInside {...props} strokeWidth={1.5} />
         ),
@@ -60,6 +70,9 @@ const HomeTabs = createBottomTabNavigator({
       options: {
         headerShown: false,
         tabBarShowLabel: false,
+        headerTitleStyle: {
+          fontSize: 16,
+        },
         tabBarIcon: (props) => <UserRound {...props} strokeWidth={1.5} />,
       },
     },
@@ -81,21 +94,14 @@ const RootStack = createNativeStackNavigator({
         path: ":id",
       },
       options: {
-        headerShown: false,
+        title: "Place Detail",
+        headerShown: true,
+        headerTitleStyle: {
+          fontSize: 14,
+        },
+        headerBackButtonDisplayMode: "minimal",
       },
     },
-    // Profile: {
-    //   screen: Profile,
-    //   linking: {
-    //     path: ":user(@[a-zA-Z0-9-_]+)",
-    //     parse: {
-    //       user: (value) => value.replace(/^@/, ""),
-    //     },
-    //     stringify: {
-    //       user: (value) => `@${value}`,
-    //     },
-    //   },
-    // },
     Settings: {
       screen: Settings,
       options: ({ navigation }) => ({

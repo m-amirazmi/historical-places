@@ -1,12 +1,15 @@
 import { Epic, ofType } from "redux-observable";
 import { catchError, from, map, mergeMap, of, switchMap } from "rxjs";
 import {
+  fetchAddressByIdApi,
   fetchPlaceDetailApi,
   fetchPlacesApi,
   fetchVisitedPlacesApi,
   updatePlaceVisitedApi,
 } from "../utils/api";
 import {
+  fetchAddressByIdError,
+  fetchAddressByIdSuccess,
   fetchPlaceDetailError,
   fetchPlaceDetailSuccess,
   fetchPlacesSuccess,
@@ -17,6 +20,7 @@ import {
   updatePlaceVisitedSuccess,
 } from "./actions";
 import {
+  FETCH_ADDRESS_BY_ID,
   FETCH_PLACE_DETAIL,
   FETCH_PLACES,
   FETCH_VISITED_PLACES,
@@ -112,5 +116,26 @@ export const refetchPlacesAfterVisitedUpdateEpic: Epic<
   return action$.pipe(
     ofType(UPDATE_PLACE_VISITED_SUCCESS),
     mergeMap(() => [{ type: FETCH_PLACES }, { type: FETCH_VISITED_PLACES }])
+  );
+};
+
+export const fetchAddressByIdEpic: Epic<
+  PlacesAction,
+  PlacesAction,
+  RootState
+> = (action$) => {
+  return action$.pipe(
+    ofType(FETCH_ADDRESS_BY_ID),
+    mergeMap((action) => {
+      return from(fetchAddressByIdApi(action.payload)).pipe(
+        map(
+          (response) =>
+            response
+              ? fetchAddressByIdSuccess(response)
+              : fetchAddressByIdError("Something went wrong"),
+          catchError((err) => of(fetchAddressByIdError(err.message)))
+        )
+      );
+    })
   );
 };

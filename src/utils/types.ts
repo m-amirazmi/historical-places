@@ -18,8 +18,8 @@ export interface Place {
   id: string;
   name: string;
   description: string;
-  address: Address;
-  coordinate: Coordinate;
+  address_id?: string;
+  coordinate_id?: string;
   image_url?: string;
   category?: string;
   rating?: number;

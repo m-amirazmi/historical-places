@@ -1,5 +1,8 @@
-import { Place } from "../utils/types";
+import { Address, Place } from "../utils/types";
 import {
+  FETCH_ADDRESS_BY_ID,
+  FETCH_ADDRESS_BY_ID_FAILURE,
+  FETCH_ADDRESS_BY_ID_SUCCESS,
   FETCH_PLACE_DETAIL,
   FETCH_PLACE_DETAIL_FAILURE,
   FETCH_PLACE_DETAIL_SUCCESS,
@@ -60,6 +63,19 @@ export const fetchVisitedPlacesError = (error: string) => ({
   payload: error,
 });
 
+export const fetchAddressById = (id: string) => ({
+  type: FETCH_ADDRESS_BY_ID,
+  payload: id,
+});
+export const fetchAddressByIdSuccess = (address: Address) => ({
+  type: FETCH_ADDRESS_BY_ID_SUCCESS,
+  payload: address,
+});
+export const fetchAddressByIdError = (error: string) => ({
+  type: FETCH_ADDRESS_BY_ID_FAILURE,
+  payload: error,
+});
+
 export type PlacesAction =
   | ReturnType<typeof fetchPlaces>
   | ReturnType<typeof fetchPlacesSuccess>
@@ -72,4 +88,7 @@ export type PlacesAction =
   | ReturnType<typeof updatePlaceVisitedError>
   | ReturnType<typeof fetchVisitedPlaces>
   | ReturnType<typeof fetchVisitedPlacesSuccess>
-  | ReturnType<typeof fetchVisitedPlacesError>;
+  | ReturnType<typeof fetchVisitedPlacesError>
+  | ReturnType<typeof fetchAddressById>
+  | ReturnType<typeof fetchAddressByIdSuccess>
+  | ReturnType<typeof fetchAddressByIdError>;

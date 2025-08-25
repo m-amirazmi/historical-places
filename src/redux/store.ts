@@ -3,6 +3,7 @@ import { applyMiddleware, legacy_createStore as createStore } from "redux";
 import { combineEpics, createEpicMiddleware } from "redux-observable";
 import { PlacesAction } from "./actions";
 import {
+  fetchAddressByIdEpic,
   fetchPlaceDetailEpic,
   fetchPlacesEpic,
   fetchVisitedPlacesEpic,
@@ -22,7 +23,8 @@ const rootEpic = combineEpics(
   fetchPlaceDetailEpic,
   updatePlaceDetailEpic,
   fetchVisitedPlacesEpic,
-  refetchPlacesAfterVisitedUpdateEpic
+  refetchPlacesAfterVisitedUpdateEpic,
+  fetchAddressByIdEpic
 );
 
 // @ts-expect-error createStore is still valid for this project
